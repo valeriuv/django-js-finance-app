@@ -5,6 +5,8 @@ usernameField.addEventListener("keyup", (e) => {
     const usernameVal=e.target.value;
     console.log("usernameVal", usernameVal)
 
-    fetch("/authentication/validate-username");
+    fetch("/authentication/validate-username", {
+        body:
+    });
 
 })
