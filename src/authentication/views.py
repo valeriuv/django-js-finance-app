@@ -14,9 +14,7 @@ class UsernameValidationView(View):
             return JsonResponse({'username_error': 'Username should only contain alphanumeric characters'}, status=400)
         if User.objects.filter(username=username).exists():
             return JsonResponse({'username_error': 'Username is already in use.'}, status=409)
-
-        else:
-            return JsonResponse({'username_valid': True})
+        return JsonResponse({'username_valid': True})
 
 class RegistrationView(View):
     def get(self, request):
