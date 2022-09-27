@@ -3,7 +3,7 @@ from django.views import View
 import json
 from django.http import JsonResponse
 from django.contrib.auth.models import User
-import validate_email from validate_email
+import validate_email
 
 # Create your views here.
 
