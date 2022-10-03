@@ -11,10 +11,12 @@ const handleToggleInput = (e) => {
 
         showPasswordToggle.textContent = "HIDE";
         passwordField.setAttribute("type", "text");
+        console.log("11111111 Password toggle hide");
 
     } else {
         showPasswordToggle.textContent = "SHOW";
         passwordField.setAttribute("type", "password");
+        console.log("11111111 Password toggle show");
     }
 
 }

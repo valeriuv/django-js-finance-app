@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from decouple import config
 from django.contrib import messages
+from django.core.mail import send_mail, EmailMessage
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -141,3 +142,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MESSAGE_TAGS = {
     messages.ERROR: 'danger'
 }
+
+
+# SMTP backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = config('E_HOST')
+EMAIL_PORT = config('E_PORT')
+EMAIL_HOST_USER = config('E_HOST_USER')
+EMAIL_HOST_PASSWORD = config('E_HOST_PASSWORD')
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
