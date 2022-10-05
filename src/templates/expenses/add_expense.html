@@ -1,8 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Add Expense</h1>
 
+    <div class="container mt-3">
+
+        <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add expense</li>
+            </ol>
+        </nav>
+
+        <h1>Add Expense</h1>
+
+        <div class="card">
+            <div class="card-body">
+
+                <form action="{% url 'add-expense' %}" method="POST">
+
+                    {% csrf_token %}
+
+                    {% include 'partials/_messages.html' %}
+
+                    <div class="mb-3">
+                        <label for="expense-amount" class="form-label">Amount</label>
+                        <input value="{{amount}}" class="form-control" type="text" name="expense-amount" id="expense-amount">  
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="expense-description" class="form-label">Description</label>
+                        <input value="{{description}}" class="form-control" type="text" name="expense-description" id="expense-description">  
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="expense-category" class="form-label">Category</label>
+                        <select class="form-control" name="expense-category" id="expense-category">
+
+                            {% for category in categories %}
+                                <option name="category" value="{{ category.name }}">{{ category.name }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="expense-date" class="form-label">Date of expense</label>
+                        <input class="form-control" type="date" name="expense-date" id="expense-date">  
+                    </div>
+
+                    <input type="submit" value="Add expense" class="btn btn-primary form-control mt-3" />
+
+                </form>
+
+            </div>
+
+        </div>
+
+       
+        
+    </div>
 
 
 {% endblock %}

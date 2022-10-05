@@ -2,23 +2,34 @@
 
 {% block content %}
 
-<div class="container">
-    <div class="pt-3">
-        {% include 'partials/_messages.html' %}
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Expenses</a></li>
+          <li class="breadcrumb-item active" aria-current="page">My expenses</li>
+        </ol>
+    </nav>
+
+
+    <div class="row">
+
+        <div class="col-md-9">
+            <h1>My expenses</h1>
+        </div>
+
+        <div class="col-md-3">
+            <div class="float-end">
+                <a href="{% url 'add-expense' %}" class="btn btn-primary">Add expense</a>                
+            </div>
+        </div>
+        
     </div>
-    
-    <h1>Expenses list</h1>
-    
-    <ul class="list-group">
-        <li class="list-group-item">Beer</li>
-        <li class="list-group-item">Beer</li>
-        <li class="list-group-item">Beer</li>
-        <li class="list-group-item">Beer</li>
-        <li class="list-group-item">Beer</li>
-    
-    </ul>    
-    
+
+    {% include 'partials/_messages.html' %}
+
 </div>
+
 
 
 {% endblock %}
