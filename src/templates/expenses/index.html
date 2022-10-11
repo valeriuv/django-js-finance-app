@@ -20,13 +20,77 @@
 
         <div class="col-md-3">
             <div class="float-end">
-                <a href="{% url 'add-expense' %}" class="btn btn-primary">Add expense</a>                
+                <a href="{% url 'expense-add' %}" class="btn btn-primary">Add expense</a>                
             </div>
         </div>
         
     </div>
 
     {% include 'partials/_messages.html' %}
+
+</div>
+
+<div class="container mt-3">
+
+    {% if expenses.count %}
+
+        <table class="table table-stripped table-hover">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>Category </th>
+                    <th>Description</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for expense in page_obj %}
+                <tr>
+                    <td>{{expense.amount}}</td>
+                    <td>{{expense.category}}</td>
+                    <td>{{expense.description}}</td>
+                    <td>{{expense.date}}</td>
+                    <td><a href="{% url 'expense-edit' expense.pk %}" class="btn btn-secondary float-end">Edit</a></td>
+                </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+
+        <div class="row mt-4">
+
+            <div class="col-md-6">
+                Showing page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </div>
+    
+            <div class="col-md-6">
+                <ul class="pagination float-end">
+                    {% if page_obj.has_previous %}
+                        <li {% if page_obj.number == 1 %} class="page-item active" {% endif %}>
+                            <a href="?page=1" class="page-link">&laquo; 1</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">Previous</a>
+                        </li>
+                    {% endif %}
+        
+                    {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.next_page_number }}" class="page-link">Next</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">{{ page_obj.paginator.num_pages }} &raquo;</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+
+        </div>
+        
+
+    {% endif %}
 
 </div>
 

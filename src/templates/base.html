@@ -22,12 +22,12 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <input class="form-control form-control-dark w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
+  <div class="navbar-nav align-middle">
+    <div class="nav-item text-nowrap align-middle">
 
-      <form action="{% url 'logout' %}" method="POST" class="btn-block">
+      <form action="{% url 'logout' %}" method="POST" >
         {% csrf_token %}
-        <button value="Sign out" type="submit" class="btn btn-block btn-secondary">Sign out</button>
+        <button value="Sign out" type="submit" class="btn btn-secondary btn-block align-middle">Sign out</button>
       </form>
 
     </div>

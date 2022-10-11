@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit expense</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Edit expense</h1>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'expense-delete' expense_id %}" class="btn btn-danger float-end">Delete expense</a>
+        </div>
+
+    </div>
+
+
+    
+
+
+    <div class="card">
+        <div class="card-body">
+
+            <form action="#" method="POST">
+
+                {% csrf_token %}
+
+                {% include 'partials/_messages.html' %}
+
+                <div class="mb-3">
+                    <label for="expense-amount" class="form-label">Amount</label>
+                    <input value="{{ amount }}" class="form-control" type="text" name="expense-amount" id="expense-amount">  
+                </div>
+
+                <div class="mb-3">
+                    <label for="expense-description" class="form-label">Description</label>
+                    <input value="{{ description }}" class="form-control" type="text" name="expense-description" id="expense-description">  
+                </div>
+
+                <div class="mb-3">
+                    <label for="expense-category" class="form-label">Category</label>
+                    <select class="form-control" name="expense-category" id="expense-category">
+                        <option selected name="category" value="{{ category }}">{{ category }}</option>
+                        {% for category in categories %}
+                            <option name="category" value="{{ category.name }}">{{ category.name }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="expense-date" class="form-label">Date of expense</label>
+                    <input class="form-control" type="date" name="expense-date" id="expense-date" value="{{ date }}">  
+                </div>
+
+                <input type="submit" value="Update expense" class="btn btn-primary form-control mt-3" />
+
+            </form>
+
+        </div>
+
+    </div> 
+    
+</div>
+
+
+{% endblock %}

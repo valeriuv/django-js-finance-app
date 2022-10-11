@@ -16,7 +16,7 @@
         <div class="card">
             <div class="card-body">
 
-                <form action="{% url 'add-expense' %}" method="POST">
+                <form action="{% url 'expense-add' %}" method="POST">
 
                     {% csrf_token %}
 
@@ -54,9 +54,7 @@
 
             </div>
 
-        </div>
-
-       
+        </div> 
         
     </div>
 
