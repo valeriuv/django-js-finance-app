@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="container mt-3">
+
+        <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Add income</li>
+            </ol>
+        </nav>
+
+        <h1>Add Income</h1>
+
+        <div class="card">
+            <div class="card-body">
+
+                <form action="{% url 'income-add' %}" method="POST">
+
+                    {% csrf_token %}
+
+                    {% include 'partials/_messages.html' %}
+
+                    <div class="mb-3">
+                        <label for="income-amount" class="form-label">Amount</label>
+                        <input value="{{amount}}" class="form-control" type="text" name="income-amount" id="income-amount">  
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="income-description" class="form-label">Description</label>
+                        <input value="{{description}}" class="form-control" type="text" name="income-description" id="income-description">  
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="income-source" class="form-label">Source</label>
+                        <select class="form-control" name="income-source" id="income-source">
+
+                            {% for source in sources %}
+                                <option name="source" value="{{ source.name }}">{{ source.name }}</option>
+                            {% endfor %}
+
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="income-date" class="form-label">Date of income</label>
+                        <input class="form-control" type="date" name="income-date" id="income-date">  
+                    </div>
+
+                    <input type="submit" value="Add income" class="btn btn-primary form-control mt-3" />
+
+                </form>
+
+            </div>
+
+        </div> 
+        
+    </div>
+
+
+{% endblock %}

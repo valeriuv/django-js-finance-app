@@ -4,5 +4,9 @@ from .models import Expense, Category
 # Register your models here.
 
 
-admin.site.register(Expense)
+class ExpenseAdmin(admin.ModelAdmin):
+    list_display = ('id', 'amount', 'date', 'description', 'category', 'owner')
+    search_fields = ('amount', 'date', 'description', 'category')
+
+admin.site.register(Expense, ExpenseAdmin)
 admin.site.register(Category)

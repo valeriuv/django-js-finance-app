@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{% url 'income' %}">Income</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Edit income</li>
+        </ol>
+    </nav>
+
+    <div class="row">
+        <div class="col-md-9">
+            <h1>Edit income</h1>
+        </div>
+
+        <div class="col-md-3">
+            <a href="{% url 'income-delete' income_id %}" class="btn btn-danger float-end">Delete income</a>
+        </div>
+
+    </div>
+
+
+    
+
+
+    <div class="card">
+        <div class="card-body">
+
+            <form action="#" method="POST">
+
+                {% csrf_token %}
+
+                {% include 'partials/_messages.html' %}
+
+                <div class="mb-3">
+                    <label for="income-amount" class="form-label">Amount</label>
+                    <input value="{{ amount }}" class="form-control" type="text" name="income-amount" id="income-amount">  
+                </div>
+
+                <div class="mb-3">
+                    <label for="income-description" class="form-label">Description</label>
+                    <input value="{{ description }}" class="form-control" type="text" name="income-description" id="income-description">  
+                </div>
+
+                <div class="mb-3">
+                    <label for="income-source" class="form-label">Source</label>
+                    <select class="form-control" name="income-source" id="income-source">
+                        <option selected name="source" value="{{ source }}">{{ source }}</option>
+                        {% for source in sources %}
+                            <option name="source" value="{{ source.name }}">{{ source.name }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label for="income-date" class="form-label">Date of income</label>
+                    <input class="form-control" type="date" name="income-date" id="income-date" value="{{ date }}">  
+                </div>
+
+                <input type="submit" value="Update income" class="btn btn-primary form-control mt-3" />
+
+            </form>
+
+        </div>
+
+    </div> 
+    
+</div>
+
+
+{% endblock %}
