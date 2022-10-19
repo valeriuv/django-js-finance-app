@@ -151,3 +151,45 @@ class LogoutView(View):
         auth.logout(request)
         messages.success(request, 'You have been logged out.')
         return redirect('login')
+
+
+class RequestPasswordResetEmail(View):
+    def get(self, request):
+        return render(request, 'authentication/reset-password.html')
+
+    def post(self, request):
+        email = request.POST['email']
+
+        context = {
+            'values': request.POST
+        }
+
+        # check if email is not valid
+        if not validate_email(email):
+            messages.error(request, 'Please supply a valid email.')
+            return render(request, 'authentication/reset-password.html', context)
+
+        domain = get_current_site(request).domain
+
+        # Encode user id
+        uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+
+        # Get token the user uses to verify
+
+        # Relative URL for verification
+        link = reverse('activate', kwargs={'uidb64': uidb64, 'token': token_generator.make_token(user)})
+
+        activate_url = 'http://' + domain + link
+
+        email_subject = 'Activate your account'
+        email_body = 'Hi, ' + user.username + '!\nPlease use this link to verify your account \n' + activate_url
+        email = EmailMessage(
+            email_subject,
+            email_body,
+            'delirviolet@gmail.com',
+            [email],
+        )
+        email.send(fail_silently=False)
+
+
+        return render(request, 'authentication/reset-password.html')
