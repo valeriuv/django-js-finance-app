@@ -33,12 +33,16 @@
 
 <div class="container mt-3">
 
-    <div class="row">
-        <div class="col-md-8"></div>
+    <div class="row my-3">
         <div class="col-md-4">
             <div class="form-group">
                 <input type="text" class="form-control" id="searchField" placeholder="Search">
             </div>
+        </div>
+        <div class="col-md-8 d-flex justify-content-end">
+            <span class="px-1"><a href="{% url 'export-csv' %}" class="btn btn-secondary">Export CSV</a></span>
+            <span class="px-1"><a href="{% url 'export-excel' %}" class="btn btn-secondary">Export Excel</a></span>
+            <span class="px-1"><a href="{% url 'export-pdf' %}" class="btn btn-secondary">Export PDF</a></span>
         </div>
     </div>
 

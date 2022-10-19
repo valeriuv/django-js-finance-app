@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-3">
+
+    <nav aria-label="breadcrumb" style="--bs-breadcrumb-divider: '>';">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="{% url 'expenses' %}">Expenses</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Summary</li>
+        </ol>
+    </nav>
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+</div>
+
+
+
+ <script src="{% static 'js/stats.js' %}"></script>
+
+{% endblock %}
